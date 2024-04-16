@@ -1,0 +1,59 @@
+<section id="resume" class="resume">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Resume</h2>
+    </div>
+    <div class="container d-flex justify-content-end">
+      <button class="btn btn-primary" (click)="downloadResume()"><i class="fa-solid fa-download"></i> Download Resume
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-lg-6" data-aos="fade-up">
+        <h3 class="resume-title">Summary</h3>
+        <div class="resume-item pb-0">
+          <h4>{{summary.name}}</h4>
+          <p><em>{{summary.description}}</em></p>
+          <ul>
+            <li>{{summary.address}}</li>
+            <li>{{summary.phoneNumber}}</li>
+            <li>{{summary.email}}</li>
+          </ul>
+        </div>
+
+        <h3 class="resume-title">Skills</h3>
+        <div class="resume-item pb-0 skill">
+          <ul>
+            <li *ngFor="let skill of skills" [innerHTML]="skill" style="list-style-type: none"></li>
+          </ul>
+        </div>
+
+        <h3 class="resume-title">Education</h3>
+        <div class="resume-item" *ngFor="let e of education">
+          <h4>{{e.title}}</h4>
+          <ng-container *ngIf="!e.isCompleted"><em>In progress via distance education. Expected completion</em>
+            <h5>{{e.year}}</h5>
+          </ng-container>
+
+          <h5 *ngIf="e.isCompleted">{{e.year}}</h5>
+          <p><em>{{e.universityName}}</em></p>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="resume-title">Professional Experience</h3>
+        <div class="resume-item" *ngFor="let ex of experience">
+          <h4>{{ex.title}}</h4>
+          <h5>{{ex.year}}</h5>
+          <p><em>{{ex.company}}</em></p>
+          <ul>
+            <li *ngFor="let contribution of ex.contributions">{{contribution}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container d-flex justify-content-start" class="downloadResume">
+  <button class="btn btn-primary" (click)="downloadResume()"><i class="fa-solid fa-download"></i> Download Resume
+  </button>
+</div>
