@@ -166,25 +166,33 @@
    * Porfolio isotope and filter
    */
   window.addEventListener('load', () => {
-    let portfolioContainer = select('.portfolio-container');
-    if (portfolioContainer) {
-      let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.portfolio-item'
+    // Select the portfolio container element
+    let blogContainer = select('.blog-container');
+    // Check if the portfolio container exists
+    if (blogContainer) {
+      // Initialize Isotope with the portfolio container and specify the item selector
+      let blogIsotope = new Isotope(blogContainer, {
+        itemSelector: '.blog-item'
       });
+      // Select all filter buttons in the portfolio filters list
+      let blogFilters = select('#blog-filters li', true);
 
-      let portfolioFilters = select('#portfolio-flters li', true);
-
-      on('click', '#portfolio-flters li', function(e) {
+      // Add click event listener to each filter button
+      on('click', '#blog-filters li', function(e) {
+        // Prevent default behavior of link click
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        blogFilters.forEach(function(el) {
+          // Remove 'filter-active' class from all filter buttons
           el.classList.remove('filter-active');
         });
+        // Add 'filter-active' class to the clicked filter button
         this.classList.add('filter-active');
-
-        portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
+        // Arrange portfolio items based on the filter category
+        blogIsotope.arrange({
+          filter: this.getAttribute('data-filter') // filter: '.filter-app' ... example filter criteria
         });
-        portfolioIsotope.on('arrangeComplete', function() {
+        // Refresh AOS (Animate on Scroll) after arranging portfolio items
+        blogIsotope.on('arrangeComplete', function() {
           AOS.refresh()
         });
       }, true);

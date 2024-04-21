@@ -1,4 +1,4 @@
-<section id="resume" class="resume">
+<section id="resume" class="resume margin-left">
   <div class="container">
 
     <div class="section-title">
@@ -14,11 +14,6 @@
         <div class="resume-item pb-0">
           <h4>{{summary.name}}</h4>
           <p><em>{{summary.description}}</em></p>
-          <ul>
-            <li>{{summary.address}}</li>
-            <li>{{summary.phoneNumber}}</li>
-            <li>{{summary.email}}</li>
-          </ul>
         </div>
 
         <h3 class="resume-title">Skills</h3>
@@ -31,20 +26,17 @@
         <h3 class="resume-title">Education</h3>
         <div class="resume-item" *ngFor="let e of education">
           <h4>{{e.title}}</h4>
-          <ng-container *ngIf="!e.isCompleted"><em>In progress via distance education. Expected completion</em>
-            <h5>{{e.year}}</h5>
-          </ng-container>
-
-          <h5 *ngIf="e.isCompleted">{{e.year}}</h5>
+          <h5>{{e.year}}</h5>
           <p><em>{{e.universityName}}</em></p>
         </div>
       </div>
       <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
         <h3 class="resume-title">Professional Experience</h3>
-        <div class="resume-item" *ngFor="let ex of experience">
+        <div class="resume-item" *ngFor="let ex of experience; let index;">
           <h4>{{ex.title}}</h4>
           <h5>{{ex.year}}</h5>
-          <p><em>{{ex.company}}</em></p>
+          <p *ngIf="ex.company.startsWith('Creospan')"><a href="https://creospan.com/" target="_blank"><img style="width: 64px; height: 64px" src="../../assets/img/creospan_logo.jpg"></a><em>{{ex.company}}</em></p>
+          <p *ngIf="ex.company.startsWith('MVP')"><a href="https://mvp-apps.com/" target="_blank"><img style="width: 64px; height: 64px; padding-right: 5px" src="../../assets/img/mvp_logo.jpg"></a><em>{{ex.company}}</em></p>
           <ul>
             <li *ngFor="let contribution of ex.contributions">{{contribution}}</li>
           </ul>
@@ -53,7 +45,3 @@
     </div>
   </div>
 </section>
-<div class="container d-flex justify-content-start" class="downloadResume">
-  <button class="btn btn-primary" (click)="downloadResume()"><i class="fa-solid fa-download"></i> Download Resume
-  </button>
-</div>
