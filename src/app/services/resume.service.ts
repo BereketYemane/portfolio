@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {MONTHS_TO_INDEX} from "../constant/Constant";
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,11 @@ export class ResumeService {
     return education;
   }
 
-  getExperience(): Experience[]{
+  getExperience(): Experience[] {
     return experience;
   }
 
-  getSkills(): string[]{
+  getSkills(): string[] {
     return skillsWithIcons;
   }
 }
@@ -72,7 +73,8 @@ const education: Education[] = [
 
 export interface Experience {
   title: string;
-  year: string;
+  startDate: { month: string, year: string },
+  endDate: { month?: string, year: string },
   company: string;
   contributions: string[];
 }
@@ -80,7 +82,8 @@ export interface Experience {
 const experience: Experience[] = [
   {
     title: "Full Stack Engineer",
-    year: "Jan 2022 - Present",
+    startDate: {month: MONTHS_TO_INDEX.JAN, year: '2022'},
+    endDate: {month: '', year: 'Present'},
     company: "Creospan Inc, Chicago, Illinois, United States",
     contributions: [
       "Developed robust backend solutions using Java and the Spring framework",
@@ -96,7 +99,8 @@ const experience: Experience[] = [
   },
   {
     title: "Web Application Developer",
-    year: "Jan 2020- Apr 2021",
+    startDate: {month: MONTHS_TO_INDEX.JAN, year: '2020'},
+    endDate: {month: MONTHS_TO_INDEX.APR, year: '2021'},
     company: "MVP APPLICATION & GAME DESIGN, Abu Dhabi, UAE",
     contributions: [
       "Contributed to a fast-paced, team environment while designing functional web applications",

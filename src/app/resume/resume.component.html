@@ -34,7 +34,7 @@
         <h3 class="resume-title">Professional Experience</h3>
         <div class="resume-item" *ngFor="let ex of experience; let index;">
           <h4>{{ex.title}}</h4>
-          <h5>{{ex.year}}</h5>
+          <h5 [innerHTML] = "this.getDescription(ex)"></h5>
           <p *ngIf="ex.company.startsWith('Creospan')"><a href="https://creospan.com/" target="_blank"><img style="width: 64px; height: 64px" src="../../assets/img/creospan_logo.jpg"></a><em>{{ex.company}}</em></p>
           <p *ngIf="ex.company.startsWith('MVP')"><a href="https://mvp-apps.com/" target="_blank"><img style="width: 64px; height: 64px; padding-right: 5px" src="../../assets/img/mvp_logo.jpg"></a><em>{{ex.company}}</em></p>
           <ul>

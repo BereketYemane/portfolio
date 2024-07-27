@@ -38,24 +38,36 @@
       </div>
 
       <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+        <form [formGroup]="contactForm" (ngSubmit)="sendMessage()" class="php-email-form">
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="name">Your Name</label>
-              <input type="text" name="name" class="form-control" id="name" required>
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Your Name</mat-label>
+                <input matInput formControlName="name" id="name">
+                <mat-error>Your Name is required.</mat-error>
+              </mat-form-field>
             </div>
             <div class="form-group col-md-6">
-              <label for="name">Your Email</label>
-              <input type="email" class="form-control" name="email" id="email" required>
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Your Email</mat-label>
+                <input matInput type="email" formControlName="email" id="email">
+                <mat-error>Please enter a valid email address.</mat-error>
+              </mat-form-field>
             </div>
           </div>
           <div class="form-group">
-            <label for="name">Subject</label>
-            <input type="text" class="form-control" name="subject" id="subject" required>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Subject</mat-label>
+              <input matInput formControlName="subject" id="subject">
+              <mat-error>Subject is required.</mat-error>
+            </mat-form-field>
           </div>
           <div class="form-group">
-            <label for="name">Message</label>
-            <textarea class="form-control" name="message" rows="10" required></textarea>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Message</mat-label>
+              <textarea matInput formControlName="message" rows="10"></textarea>
+              <mat-error>Message is required.</mat-error>
+            </mat-form-field>
           </div>
           <div class="my-3">
             <div class="loading">Loading</div>
@@ -63,11 +75,10 @@
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
           <div class="text-center">
-            <button type="submit">Send Message</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid">Send Message</button>
           </div>
         </form>
       </div>
-
     </div>
 
   </div>
